@@ -1,0 +1,76 @@
+import { normalizeAudioMimeType } from "@/lib/audioFormats";
+import { IS_P2P_MODE } from "@/lib/p2p";
+import { broadcastLocalTrackToRoom, ensureP2PTrackLocal } from "@/p2p/audio/transfer";
+import { saveLocalTrack } from "@/p2p/audio/localTracks";
+import { toP2PTrackUrl } from "@/p2p/audio/urls";
+import { scheduleTrackPushRetries } from "@/p2p/roomSync";
+import { useP2PConnectionStore } from "@/store/p2pConnection";
+import type { DiscoverRoomsType, GetActiveRoomsType, GetDefaultAudioType } from "@pearplay/shared";
+import { ClientActionEnum } from "@pearplay/shared";
+import { nanoid } from "nanoid";
+import { isP2PTrackUrl, parseP2PTrackId } from "@/p2p/audio/urls";
+
+export const uploadAudioFile = async (data: { file: File; roomId: string }) => {
+  if (!IS_P2P_MODE) {
+    throw new Error("Server upload is disabled in this fork. Use P2P mode.");
+  }
+
+  const trackId = nanoid();
+  const url = toP2PTrackUrl(trackId);
+  const mimeType = normalizeAudioMimeType(data.file.type, data.file.name);
+  const record = {
+    trackId,
+    fileName: data.file.name,
+    mimeType,
+    blob: data.file.type ? data.file : new Blob([data.file], { type: mimeType }),
+    createdAt: Date.now(),
+  };
+
+  await saveLocalTrack(record);
+
+  const p2p = useP2PConnectionStore.getState();
+  if (!p2p.isReady) {
+    throw new Error("Room connection is still starting — try again in a moment");
+  }
+
+  p2p.sendRequest({
+    type: ClientActionEnum.enum.REGISTER_AUDIO_SOURCE,
+    source: { url, name: data.file.name },
+  });
+
+  const transport = p2p.transport;
+  if (transport) {
+    scheduleTrackPushRetries(() => void broadcastLocalTrackToRoom(transport, record));
+    p2p.pushPlaylistToAllPeers();
+    p2p.runRoomSync();
+  }
+
+  return { success: true, publicUrl: url };
+};
+
+export const fetchAudio = async (url: string) => {
+  if (isP2PTrackUrl(url)) {
+    const trackId = parseP2PTrackId(url);
+    if (!trackId) throw new Error("Invalid P2P track URL");
+    const record = await ensureP2PTrackLocal(trackId);
+    return record.blob;
+  }
+
+  const response = await fetch(url);
+  if (!response.ok) {
+    throw new Error(`Failed to fetch audio: ${response.statusText}`);
+  }
+  return await response.blob();
+};
+
+export async function fetchDefaultAudioSources(): Promise<GetDefaultAudioType> {
+  return [];
+}
+
+export async function fetchActiveRooms(): Promise<GetActiveRoomsType> {
+  return 0;
+}
+
+export async function fetchDiscoverRooms(): Promise<DiscoverRoomsType> {
+  return [];
+}

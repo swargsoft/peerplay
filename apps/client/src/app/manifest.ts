@@ -1,0 +1,26 @@
+import type { MetadataRoute } from "next";
+
+export const dynamic = "force-static";
+
+const basePath = (process.env.NEXT_PUBLIC_BASE_PATH ?? "").replace(/\/$/, "");
+const iconPath = basePath ? `${basePath}/icon.svg` : "/icon.svg";
+
+export default function manifest(): MetadataRoute.Manifest {
+  return {
+    name: "PeerPlay",
+    short_name: "PeerPlay",
+    description:
+      "Turn every device into a synchronized speaker. PeerPlay is an open-source music player for multi-device audio playback. Host a listening party today!",
+    start_url: basePath ? `${basePath}/` : "/",
+    display: "standalone",
+    background_color: "#111111",
+    theme_color: "#111111",
+    icons: [
+      {
+        src: iconPath,
+        sizes: "any",
+        type: "image/svg+xml",
+      },
+    ],
+  };
+}
