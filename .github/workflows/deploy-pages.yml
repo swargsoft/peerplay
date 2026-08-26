@@ -1,4 +1,4 @@
-name: Deploy pearplay-p2p to GitHub Pages
+name: Deploy peerplay to GitHub Pages
 
 on:
   push:
@@ -34,7 +34,7 @@ jobs:
           NEXT_PUBLIC_P2P_MODE: "1"
           NEXT_PUBLIC_STATIC_EXPORT: "1"
           NEXT_OUTPUT: export
-          NEXT_PUBLIC_BASE_PATH: /pearplay-p2p
+          NEXT_PUBLIC_BASE_PATH: /peerplay
         run: bun run build:pages
 
       - name: Prepare SPA fallback for GitHub Pages

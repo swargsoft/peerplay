@@ -6,7 +6,7 @@ Ephemeral Synchronized multi-device audio playback in the browser — now 100% *
 
 ## Live demo
 
-**[https://audiohacking.github.io/pearplay-p2p](https://audiohacking.github.io/pearplay-p2p)**
+**[https://swargsoft.github.io/peerplay](https://swargsoft.github.io/peerplay)**
 
 Open the link, join or create a 6-digit room, and share the URL with others in the same session.
 
@@ -44,13 +44,13 @@ Upload audio from the queue panel. Files stay local and replicate to other peers
 | `apps/client`     | Next.js app — UI, Trystero rooms, per-peer room state |
 | `packages/shared` | Zod schemas for room messages and P2P envelopes       |
 
-- **Room id:** `pearplay-p2p-v1-{6-digit-code}` (Trystero)
+- **Room id:** `peerplay-v1-{6-digit-code}` (Trystero)
 - **Track ids:** `p2p://{trackId}` — blobs in IndexedDB, transferred via Trystero `audio-track` actions
 - **Sync:** NTP-style probes between peers; play/pause scheduled against a shared clock
 
 ## Repository
 
-Source and issues: [github.com/audiohacking/pearplay-p2p](https://github.com/audiohacking/pearplay-p2p)
+Source and issues: [github.com/swargsoft/peerplay](https://github.com/swargsoft/peerplay)
 
 ## Credits
 

@@ -1,16 +1,16 @@
 import { validateFullRoomId } from "@/lib/room";
 
 /** Trystero appId — must be unique across the Trystero network. */
-export const TRYSTERO_APP_ID = "pearplay-p2p";
+export const TRYSTERO_APP_ID = "peerplay";
 
 /** Protocol segment in room id; bump when wire protocol breaks compat. */
 export const TRYSTERO_PROTOCOL_VERSION = "v1";
 
-const ROOM_ID_PATTERN = /^pearplay-p2p-v\d+-(\d{6})$/;
+const ROOM_ID_PATTERN = /^peerplay-v\d+-(\d{6})$/;
 
 /**
  * Maps UI room code (6 digits) → Trystero room id.
- * @example toTrysteroRoomId("482910") → "pearplay-p2p-v1-482910"
+ * @example toTrysteroRoomId("482910") → "peerplay-v1-482910"
  */
 export function toTrysteroRoomId(roomCode: string): string {
   if (!validateFullRoomId(roomCode)) {

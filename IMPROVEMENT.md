@@ -36,7 +36,7 @@ The **existing Trystero path remains intact**.
 
 ### Goal
 
-Understand exactly what `pearplay-p2p` already provides before touching it.
+Understand exactly what `peerplay` already provides before touching it.
 
 ### Tasks
 
