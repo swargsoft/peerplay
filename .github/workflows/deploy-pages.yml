@@ -39,6 +39,8 @@ jobs:
 
       - name: Prepare SPA fallback for GitHub Pages
         working-directory: apps/client
+        env:
+          NEXT_PUBLIC_BASE_PATH: ""
         run: bun run pages:404
 
       - name: Configure custom domain
@@ -49,6 +51,11 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           path: apps/client/out
+      - name: Check generated paths
+        working-directory: apps/client
+        run: |
+          echo "=== Searching generated output for /peerplay ==="
+          grep -R "/peerplay" out --exclude-dir=.next || true
 
   deploy:
     needs: build

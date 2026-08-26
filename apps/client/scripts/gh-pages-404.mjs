@@ -2,7 +2,7 @@ import { writeFileSync } from "node:fs";
 import { join } from "node:path";
 
 const outDir = join(import.meta.dirname, "..", "out");
-const basePath = (process.env.NEXT_PUBLIC_BASE_PATH ?? "/peerplay").replace(/\/$/, "");
+const basePath = (process.env.NEXT_PUBLIC_BASE_PATH ?? "").replace(/\/$/, "");
 
 const redirectScript = `<!DOCTYPE html>
 <html lang="en">
