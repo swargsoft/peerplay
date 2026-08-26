@@ -1,0 +1,11 @@
+pre-commit:
+  parallel: true
+  commands:
+    client-check:
+      root: "apps/client/"
+      glob: "*.{ts,tsx,json}"
+      run: bun run format && bun run lint:fix && git add {staged_files}
+    client-typecheck:
+      root: "apps/client/"
+      glob: "*.{ts,tsx}"
+      run: bun run typecheck

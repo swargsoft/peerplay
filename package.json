@@ -1,0 +1,24 @@
+{
+  "name": "pearplay",
+  "packageManager": "bun@1.3.8",
+  "scripts": {
+    "build": "bun run --filter client build",
+    "dev": "bun run --filter client dev",
+    "start": "bun run --filter client start",
+    "client": "bun run --filter client start",
+    "client:p2p": "bun run --filter client dev:p2p",
+    "prepare": "lefthook install"
+  },
+  "workspaces": [
+    "apps/client",
+    "packages/*"
+  ],
+  "devDependencies": {
+    "@types/bun": "latest",
+    "lefthook": "^2.1.2",
+    "prettier": "^3.8.1"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  }
+}
