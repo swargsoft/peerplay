@@ -2,7 +2,8 @@ name: Deploy peerplay to GitHub Pages
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
   workflow_dispatch:
 
 permissions:
@@ -17,10 +18,13 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
 
-      - uses: oven-sh/setup-bun@v2
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
         with:
           bun-version: latest
 
@@ -30,7 +34,7 @@ jobs:
       - name: Build static site
         working-directory: apps/client
         env:
-          NEXT_TELEMETRY_DISABLED: 1
+          NEXT_TELEMETRY_DISABLED: "1"
           NEXT_PUBLIC_P2P_MODE: "1"
           NEXT_PUBLIC_STATIC_EXPORT: "1"
           NEXT_OUTPUT: export
@@ -47,15 +51,29 @@ jobs:
         working-directory: apps/client
         run: echo "peerplay.swargsoft.com" > out/CNAME
 
+      - name: Check generated paths
+        working-directory: apps/client
+        run: |
+          echo "========================================"
+          echo "Checking generated site for /peerplay"
+          echo "========================================"
+
+          echo ""
+          echo "=== CNAME ==="
+          cat out/CNAME
+
+          echo ""
+          echo "=== /peerplay references ==="
+          grep -R "/peerplay" out --exclude-dir=.next || true
+
+          echo ""
+          echo "=== Generated files ==="
+          find out -maxdepth 2 -type f | sort | head -100
+
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: apps/client/out
-      - name: Check generated paths
-        working-directory: apps/client
-        run: |
-          echo "=== Searching generated output for /peerplay ==="
-          grep -R "/peerplay" out --exclude-dir=.next || true
 
   deploy:
     needs: build
