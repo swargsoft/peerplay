@@ -1,4 +1,4 @@
-const DB_NAME = "pearplay";
+const DB_NAME = "peerplay";
 const STORE_NAME = "tracks";
 const DB_VERSION = 1;
 

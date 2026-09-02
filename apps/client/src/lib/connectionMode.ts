@@ -5,7 +5,7 @@
  */
 export type ConnectionMode = "internet" | "lan";
 
-const STORAGE_KEY = "pearplay-connection-mode";
+const STORAGE_KEY = "peerplay-connection-mode";
 
 export function setConnectionMode(mode: ConnectionMode): void {
   try {

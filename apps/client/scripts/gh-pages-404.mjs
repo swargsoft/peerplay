@@ -8,12 +8,12 @@ const redirectScript = `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>pearplay</title>
+  <title>peerplay</title>
   <script>
     (function () {
       var base = ${JSON.stringify(basePath)};
       var path = location.pathname;
-      // Fix accidental double basePath (e.g. /pearplay/pearplay/...)
+      // Fix accidental double basePath (e.g. /peerplay/peerplay/...)
       if (path.indexOf(base + base) === 0) {
         location.replace(base + path.slice(base.length) + location.search + location.hash);
         return;

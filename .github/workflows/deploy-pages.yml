@@ -1,4 +1,4 @@
-name: Deploy pearplay to GitHub Pages
+name: Deploy peerplay to GitHub Pages
 
 on:
   push:
@@ -49,13 +49,13 @@ jobs:
 
       - name: Configure custom domain
         working-directory: apps/client
-        run: echo "pearplay.swargsoft.com" > out/CNAME
+        run: echo "peerplay.swargsoft.com" > out/CNAME
 
       - name: Check generated paths
         working-directory: apps/client
         run: |
           echo "========================================"
-          echo "Checking generated site for /pearplay"
+          echo "Checking generated site for /peerplay"
           echo "========================================"
 
           echo ""
@@ -63,8 +63,8 @@ jobs:
           cat out/CNAME
 
           echo ""
-          echo "=== /pearplay references ==="
-          grep -R "/pearplay" out --exclude-dir=.next || true
+          echo "=== /peerplay references ==="
+          grep -R "/peerplay" out --exclude-dir=.next || true
 
           echo ""
           echo "=== Generated files ==="

@@ -11,7 +11,7 @@ import {
 } from "./chunking";
 import { actionId, decodeBinaryFrame, decodeTextFrame, encodeBinaryFrame, encodeTextFrame, isJsonable } from "./wire";
 
-const CONTROL_CHANNEL_LABEL = "pearplay-lan-v1";
+const CONTROL_CHANNEL_LABEL = "peerplay-lan-v1";
 const ICE_GATHER_TIMEOUT_MS = 2_000;
 
 /**
@@ -441,7 +441,7 @@ export class LanWebRTCTransport implements PeerTransport {
   private decodeSignal(signalJson: string): LanSignal {
     const parsed = JSON.parse(signalJson) as Partial<LanSignal>;
     if (parsed.v !== 1 || !parsed.from || !parsed.sdp) {
-      throw new Error("Invalid PearPlay LAN signal payload");
+      throw new Error("Invalid PeerPlay LAN signal payload");
     }
     return parsed as LanSignal;
   }
