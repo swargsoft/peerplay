@@ -1,5 +1,5 @@
 /**
- * Base path for GitHub Pages (e.g. /peerplay).
+ * Base path for GitHub Pages (e.g. /pearplay).
  * Must match `basePath` in next.config.ts / NEXT_PUBLIC_BASE_PATH at build time.
  */
 export function getBasePath(): string {

@@ -73,7 +73,7 @@ export const RoomQRCode = () => {
           <DialogHeader>
             <DialogTitle className="flex items-center gap-2 text-base font-medium">
               <QrCode size={18} className="text-neutral-400" />
-              Share PeerPlay Room
+              Share PearPlay Room
             </DialogTitle>
             {/* <DialogDescription className="text-neutral-400 -mt-1.5 text-left">
               Scan QR code to join room {roomId}

@@ -1,9 +1,9 @@
-## PeerPlay — Minimal Implementation Roadmap
+## PearPlay — Minimal Implementation Roadmap
 
 ### Target architecture
 
 ```text
-                         PeerPlay
+                         PearPlay
                             │
                    Connection Mode
                     ┌───────┴───────┐
@@ -36,7 +36,7 @@ The **existing Trystero path remains intact**.
 
 ### Goal
 
-Understand exactly what `peerplay` already provides before touching it.
+Understand exactly what `pearplay` already provides before touching it.
 
 ### Tasks
 
@@ -92,18 +92,18 @@ Files that should remain untouched
 
 ---
 
-# Stage 1 — Rebrand to PeerPlay
+# Stage 1 — Rebrand to PearPlay
 
 Do this **before networking changes**.
 
-The application should visually become PeerPlay while behavior remains unchanged.
+The application should visually become PearPlay while behavior remains unchanged.
 
 ### Change
 
 ```text
 Beatsync
     ↓
-PeerPlay
+PearPlay
 ```
 
 Update:
@@ -351,13 +351,13 @@ Join Room
 
 ---
 
-# Stage 6 — Add Connection Mode to PeerPlay
+# Stage 6 — Add Connection Mode to PearPlay
 
 Now the UI gets the **one major feature you mentioned**.
 
 ```text
 ┌──────────────────────────────┐
-│          PeerPlay            │
+│          PearPlay            │
 │                              │
 │       Choose connection      │
 │                              │
@@ -640,7 +640,7 @@ Then:
 Internet = OFF
 ```
 
-PeerPlay should still do:
+PearPlay should still do:
 
 ```text
 Create room
@@ -662,7 +662,7 @@ Synchronized playback
 
 If this works:
 
-**we have the actual PeerPlay LAN MVP.**
+**we have the actual PearPlay LAN MVP.**
 
 ---
 
@@ -673,7 +673,7 @@ Only after the networking and synchronization work.
 UI:
 
 ```text
-PeerPlay
+PearPlay
 
 Choose connection:
 
@@ -688,7 +688,7 @@ No Internet required
 Room screen:
 
 ```text
-PeerPlay
+PearPlay
 ──────────────
 
 📶 Local Wi-Fi
@@ -719,7 +719,7 @@ Keep the existing Beatsync UI wherever possible.
 # The resulting architecture
 
 ```text
-                         PEERPLAY
+                         PearPlay
                             │
                     ┌───────┴────────┐
                     │                │
@@ -762,6 +762,6 @@ Beatsync
 
 So your implementation target becomes:
 
-> **PeerPlay = Beatsync's existing synchronized playback system + Local Wi-Fi transport + QR pairing + improved precision diagnostics.**
+> **PearPlay = Beatsync's existing synchronized playback system + Local Wi-Fi transport + QR pairing + improved precision diagnostics.**
 
 And yes — **the "very precise synchronized playback" should be treated as a first-class requirement, not just a side effect of adding Wi-Fi.** The LAN transport gets the packets there quickly; the NTP + future-timestamp + Web Audio scheduler is what makes the actual playback precise.

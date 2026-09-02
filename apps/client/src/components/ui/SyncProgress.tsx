@@ -376,7 +376,7 @@ export const SyncProgress = ({ isLoading = false, loadingMessage = "Loading..." 
           transition={{ duration: 0.3, delay: 0.1 }}
         >
           <WsStatusDot wsReadyState={wsReadyState} />
-          PeerPlay calibrating
+          PearPlay calibrating
         </motion.h2>
 
         <motion.p

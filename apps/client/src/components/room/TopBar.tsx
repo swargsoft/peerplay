@@ -54,7 +54,7 @@ export const TopBar = ({ roomId }: TopBarProps) => {
             </div>
           )}
           <Link href={appPath("/")} className="font-medium hover:text-white transition-colors">
-            PeerPlay
+            PearPlay
           </Link>
 
           {/* NTP Measurements Indicator */}

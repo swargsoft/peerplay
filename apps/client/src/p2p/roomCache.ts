@@ -23,7 +23,7 @@ export interface RoomCacheSnapshot {
   chatNextMessageId: number;
 }
 
-const STORAGE_PREFIX = "peerplay-room-";
+const STORAGE_PREFIX = "pearplay-room-";
 
 function storageKey(roomCode: string): string {
   return `${STORAGE_PREFIX}${roomCode}`;

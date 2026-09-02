@@ -13,7 +13,7 @@ export const useDocumentTitle = () => {
       const songName = getAudioSourceDisplayName(track.source);
       document.title = `${songName}`;
     } else {
-      document.title = "PeerPlay";
+      document.title = "PearPlay";
     }
   }, [isPlaying, selectedAudioUrl, getSelectedTrack]);
 };

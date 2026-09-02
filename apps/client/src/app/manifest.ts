@@ -7,10 +7,10 @@ const iconPath = basePath ? `${basePath}/icon.svg` : "/icon.svg";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "PeerPlay",
-    short_name: "PeerPlay",
+    name: "PearPlay",
+    short_name: "PearPlay",
     description:
-      "Turn every device into a synchronized speaker. PeerPlay is an open-source music player for multi-device audio playback. Host a listening party today!",
+      "Turn every device into a synchronized speaker. PearPlay is an open-source music player for multi-device audio playback. Host a listening party today!",
     start_url: basePath ? `${basePath}/` : "/",
     display: "standalone",
     background_color: "#111111",
